@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 id="status"></h2>
+    <img src="" />
+
+    <script type="module">
+      import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
+
+      const socket = io();
+
+      socket.on("qr", showQR);
+      socket.on("status", showStatus);
+
+      function showQR(qr) {
+        const img = document.querySelector("img");
+        img.src = qr;
+      }
+
+      function showStatus(status) {
+        document.querySelector("#status").innerHTML = status;
+      }
+    </script>
+  </body>
+</html>
